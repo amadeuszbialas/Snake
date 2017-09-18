@@ -24,10 +24,10 @@ function gameStart(){
     px+= xv;
     py+= yv;
 
-    // Next level
-    if(score == 2){
-        this.speed = 40;
-    }
+    // // Next level
+    // if(score == 2){
+    //     this.speed = 40;
+    // }
 
     //Game over if hit border
     if(px<0 || px>tc-1 || py<0 || py>tc-1){
@@ -35,7 +35,7 @@ function gameStart(){
     }
 
     // Game screen
-    ctx.fillStyle="#080c45";
+    ctx.fillStyle="#001184";
     ctx.fillRect(0,0, gameArea.width, gameArea.height);
 
     // Snake
@@ -63,7 +63,7 @@ function gameStart(){
     ctx.fill();
 
     // if eat an apple
-    if(ax==px && ay==py && start == true){
+    if(ax==px && ay==py){
         tail++;
         ax=Math.floor(Math.random()*tc);
         ay=Math.floor(Math.random()*tc);
@@ -94,22 +94,24 @@ function gameStart(){
 }
 
 function keyPush(evt){
-    document.getElementById('score').style.display = 'block';
     document.getElementById('gameScreen').style.marginTop = '0px';
-    start = true;
     switch(evt.keyCode){
 
         case 37:
             xv=-1; yv= 0;
+            start = true;
             break;
         case 38:
             xv=0; yv= -1;
+            start = true;
             break;
         case 39:
             xv=1; yv= 0;
+            start = true;
             break;
         case 40:
             xv=0; yv= 1;
+            start = true;
             break;
     }
 }
