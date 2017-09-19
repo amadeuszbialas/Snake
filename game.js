@@ -1,13 +1,13 @@
-let px, py, gs, tc, trail, xv, yv, tail, ax, ay, message, start, speed;
+let px, py, gs, trail, xv, yv, tail, appleX, appleY, message, start, speed;
 
 document.addEventListener("keydown", keyPush);
 
 speed = 70;
 setInterval(gameStart, speed);
 py=px=10;
-gs=tc=20;
-ax=Math.floor(Math.random()*tc);
-ay=Math.floor(Math.random()*tc);
+gs=20;
+appleX=Math.floor(Math.random()*gs);
+appleY=Math.floor(Math.random()*gs);
 trail = [];
 xv=yv=0;
 tail = 5;
@@ -30,7 +30,7 @@ function gameStart(){
     // }
 
     //Game over if hit border
-    if(px<0 || px>tc-1 || py<0 || py>tc-1){
+    if(px<0 || px>gs-1 || py<0 || py>gs-1){
         gameOver();
     }
 
@@ -56,22 +56,22 @@ function gameStart(){
 
     // an apple
     ctx.beginPath();
-    ctx.arc(ax*gs+10, ay*gs+10, 10, 0, Math.PI * 2, false)
+    ctx.arc(appleX*gs+10, appleY*gs+10, 10, 0, Math.PI * 2, false)
     ctx.strokeStyle = 'red';
     ctx.stroke();
     ctx.fillStyle = 'red';
     ctx.fill();
 
     // if eat an apple
-    if(ax==px && ay==py){
+    if(appleX==px && appleY==py){
         tail++;
-        ax=Math.floor(Math.random()*tc);
-        ay=Math.floor(Math.random()*tc);
+        appleX=Math.floor(Math.random()*gs);
+        appleY=Math.floor(Math.random()*gs);
 
         for(let j=0; j<trail.length; j++){
-            if(ax == trail[j].x && ay == trail[j].y){
-                ax=Math.floor(Math.random()*tc);
-                ay=Math.floor(Math.random()*tc);
+            if(appleX == trail[j].x && appleY == trail[j].y){
+                appleX=Math.floor(Math.random()*gs);
+                appleY=Math.floor(Math.random()*gs);
             }
         }
     }
